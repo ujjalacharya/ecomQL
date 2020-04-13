@@ -1,10 +1,10 @@
 const Mutations = {
-    createDog(parent, args, ctx, info){
-        global.dogs = global.dogs || [];
-        let newDog = {name: args.name, breed: args.breed};
-        global.dogs.push(newDog);
-        return newDog;
-    }
+  async createItem(parent, args, ctx, info) {
+    const item = await ctx.db.mutation.createItem({
+      data: { ...args }
+    });
+    return item;
+  }
 };
 
 module.exports = Mutations;
